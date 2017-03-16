@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1068454065483",
+    "firebase_url": "https://expense-manager-a9f7b.firebaseio.com",
+    "project_id": "expense-manager-a9f7b",
+    "storage_bucket": "expense-manager-a9f7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068454065483:android:45d8ba3db91dd234",
+        "android_client_info": {
+          "package_name": "com.premsuraj.expensemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068454065483-o6dgfl07emu2fdguufkkqni7ug4jge6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.premsuraj.expensemanager",
+            "certificate_hash": "70cc2ef5e132d144b55b6e0e91084bb7235624aa"
+          }
+        },
+        {
+          "client_id": "1068454065483-pdrk2523ge3um6oh8jei202em89p1gqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCccPdQGIUZc-Ybcy94rywmzI50NHQWOD4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068454065483-pdrk2523ge3um6oh8jei202em89p1gqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
