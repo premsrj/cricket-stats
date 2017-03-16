@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager;
+package com.premsuraj.cricketstats;
 
 import org.junit.Test;
 

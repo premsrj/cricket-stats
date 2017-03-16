@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager.login;
+package com.premsuraj.cricketstats.login;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.crash.FirebaseCrash;
-import com.premsuraj.expensemanager.R;
+import com.premsuraj.cricketstats.R;
 
 import static com.google.android.gms.internal.zzt.TAG;
 
@@ -29,19 +29,24 @@ import static com.google.android.gms.internal.zzt.TAG;
  */
 
 public class GoogleLoginManager {
-    public interface LoginListener {
-        void loginSucceeded();
-    }
-    public class UserDetails {
-        public String userName;
-        public String imageUrl;
-    }
     private static final int RC_SIGN_IN = 4531;
-
     private UserDetails userDetails;
     private FragmentActivity activity;
     private FirebaseAuth mAuth;
-
+    private FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+            } else {
+                // User is signed out
+                Log.d(TAG, "onAuthStateChanged:signed_out");
+            }
+            // ...
+        }
+    };
     public GoogleLoginManager(FragmentActivity activity) {
         this.activity = activity;
         mAuth = FirebaseAuth.getInstance();
@@ -49,7 +54,7 @@ public class GoogleLoginManager {
 
     public void login() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("1068454065483-pdrk2523ge3um6oh8jei202em89p1gqd.apps.googleusercontent.com")
+                .requestIdToken("577020833184-mvm4qgettnq2jka1gr3b3tnk4baha9q7.apps.googleusercontent.com")
                 .build();
         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(activity)
                 .enableAutoManage(activity, new GoogleApiClient.OnConnectionFailedListener() {
@@ -105,21 +110,6 @@ public class GoogleLoginManager {
                 });
     }
 
-    private FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
-        @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            if (user != null) {
-                // User is signed in
-                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-            } else {
-                // User is signed out
-                Log.d(TAG, "onAuthStateChanged:signed_out");
-            }
-            // ...
-        }
-    };
-
     public void removeAuthListener() {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
@@ -132,5 +122,14 @@ public class GoogleLoginManager {
 
     public UserDetails getUserDetails() {
         return userDetails;
+    }
+
+    public interface LoginListener {
+        void loginSucceeded();
+    }
+
+    public class UserDetails {
+        public String userName;
+        public String imageUrl;
     }
 }

@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager.base;
+package com.premsuraj.cricketstats.base;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,16 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.premsuraj.expensemanager.R;
-import com.premsuraj.expensemanager.login.GoogleLoginManager;
-import com.premsuraj.expensemanager.navigation.NavigationContainerListener;
-import com.premsuraj.expensemanager.navigation.NavigationManager;
+import com.premsuraj.cricketstats.R;
+import com.premsuraj.cricketstats.login.GoogleLoginManager;
+import com.premsuraj.cricketstats.navigation.NavigationContainerListener;
+import com.premsuraj.cricketstats.navigation.NavigationManager;
 
 public class BaseActivity extends AppCompatActivity implements NavigationContainerListener, GoogleLoginManager.LoginListener {
 
     private static final String TAG = "Base";
-    GoogleLoginManager loginManager;
     public NavigationManager navigationManager;
+    GoogleLoginManager loginManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

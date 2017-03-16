@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager.startup;
+package com.premsuraj.cricketstats.startup;
 
 
 /**

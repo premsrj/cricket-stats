@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "1068454065483",
-    "firebase_url": "https://expense-manager-a9f7b.firebaseio.com",
-    "project_id": "expense-manager-a9f7b",
-    "storage_bucket": "expense-manager-a9f7b.appspot.com"
+    "project_number": "577020833184",
+    "firebase_url": "https://cricket-stats-adfd0.firebaseio.com",
+    "project_id": "cricket-stats-adfd0",
+    "storage_bucket": "cricket-stats-adfd0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1068454065483:android:45d8ba3db91dd234",
+        "mobilesdk_app_id": "1:577020833184:android:8cad44a41cdda36c",
         "android_client_info": {
-          "package_name": "com.premsuraj.expensemanager"
+          "package_name": "com.premsuraj.cricketstats"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1068454065483-o6dgfl07emu2fdguufkkqni7ug4jge6o.apps.googleusercontent.com",
+          "client_id": "577020833184-mvm4qgettnq2jka1gr3b3tnk4baha9q7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.premsuraj.expensemanager",
+            "package_name": "com.premsuraj.cricketstats",
             "certificate_hash": "70cc2ef5e132d144b55b6e0e91084bb7235624aa"
           }
         },
         {
-          "client_id": "1068454065483-pdrk2523ge3um6oh8jei202em89p1gqd.apps.googleusercontent.com",
+          "client_id": "577020833184-svou101l6ud398pn481i22gpbj8g25fa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCccPdQGIUZc-Ybcy94rywmzI50NHQWOD4"
+          "current_key": "AIzaSyDEEC0MyPhBfwKoxoTcmxKGsnyiTLcIfYQ"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1068454065483-pdrk2523ge3um6oh8jei202em89p1gqd.apps.googleusercontent.com",
+              "client_id": "577020833184-svou101l6ud398pn481i22gpbj8g25fa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

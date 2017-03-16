@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager.startup;
+package com.premsuraj.cricketstats.startup;
 
 /**
  * The callback class that is used to notify the StartupManager of success and failure of individual StartupItems

@@ -1,12 +1,12 @@
-package com.premsuraj.expensemanager.navigation;
+package com.premsuraj.cricketstats.navigation;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.premsuraj.expensemanager.R;
-import com.premsuraj.expensemanager.login.GoogleLoginManager;
+import com.premsuraj.cricketstats.R;
+import com.premsuraj.cricketstats.login.GoogleLoginManager;
 
 /**
  * Created by Premsuraj

@@ -1,4 +1,4 @@
-package com.premsuraj.expensemanager.navigation;
+package com.premsuraj.cricketstats.navigation;
 
 /**
  * Created by Premsuraj

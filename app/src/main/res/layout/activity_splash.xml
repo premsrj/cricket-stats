@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.premsuraj.expensemanager.SplashActivity">
+    tools:context="com.premsuraj.cricketstats.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView2"
