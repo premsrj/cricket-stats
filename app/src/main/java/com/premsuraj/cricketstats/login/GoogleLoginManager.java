@@ -22,6 +22,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.crash.FirebaseCrash;
 import com.premsuraj.cricketstats.R;
 
+import java.io.Serializable;
+
 import static com.google.android.gms.internal.zzt.TAG;
 
 /**
@@ -89,6 +91,7 @@ public class GoogleLoginManager {
         userDetails = new UserDetails();
         userDetails.userName = acct.getDisplayName();
         userDetails.imageUrl = acct.getPhotoUrl().toString();
+        userDetails.idToken = acct.getIdToken();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
@@ -104,7 +107,7 @@ public class GoogleLoginManager {
                         }
 
                         if(activity instanceof LoginListener) {
-                            ((LoginListener) activity).loginSucceeded();
+                            ((LoginListener) activity).loginSucceeded(userDetails);
                         }
                     }
                 });
@@ -125,11 +128,12 @@ public class GoogleLoginManager {
     }
 
     public interface LoginListener {
-        void loginSucceeded();
+        void loginSucceeded(UserDetails userDetails);
     }
 
-    public class UserDetails {
+    public class UserDetails implements Serializable {
         public String userName;
         public String imageUrl;
+        public String idToken;
     }
 }

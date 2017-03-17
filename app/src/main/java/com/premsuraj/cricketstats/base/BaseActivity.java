@@ -18,6 +18,9 @@ import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.login.GoogleLoginManager;
 import com.premsuraj.cricketstats.navigation.NavigationContainerListener;
 import com.premsuraj.cricketstats.navigation.NavigationManager;
+import com.premsuraj.cricketstats.utils.ObjectSerializer;
+
+import java.io.File;
 
 public class BaseActivity extends AppCompatActivity implements NavigationContainerListener, GoogleLoginManager.LoginListener {
 
@@ -114,7 +117,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationContain
     }
 
     @Override
-    public void loginSucceeded() {
-        navigationManager.userLoggedIn(loginManager.getUserDetails());
+    public void loginSucceeded(GoogleLoginManager.UserDetails userDetails) {
+        navigationManager.userLoggedIn(this, userDetails);
+        String fileName = new File(this.getFilesDir(), "userdetails.dat").getAbsolutePath();
+        new ObjectSerializer().putObject(fileName, userDetails);
     }
 }

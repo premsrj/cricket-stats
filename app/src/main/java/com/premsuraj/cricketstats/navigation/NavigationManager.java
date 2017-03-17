@@ -1,10 +1,15 @@
 package com.premsuraj.cricketstats.navigation;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.login.GoogleLoginManager;
 
@@ -16,6 +21,9 @@ public class NavigationManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationContainerListener mListener;
+    private ImageView userImage;
+    private TextView userName;
+    private View signInButton;
 
     public NavigationManager(NavigationContainerListener listener) {
         this.mListener = listener;
@@ -24,7 +32,11 @@ public class NavigationManager
     public void initNavigationView(NavigationView navigationView) {
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getHeaderView(0).findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+        userImage = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_image);
+        userName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name);
+        signInButton = navigationView.getHeaderView(0).findViewById(R.id.sign_in_button);
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
@@ -59,7 +71,14 @@ public class NavigationManager
         return true;
     }
 
-    public void userLoggedIn(GoogleLoginManager.UserDetails userDetails) {
+    public void userLoggedIn(Context context, GoogleLoginManager.UserDetails userDetails) {
 
+        Glide.with(context).load(userDetails.imageUrl)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(userImage);
+
+        userName.setText(userDetails.userName);
     }
 }
