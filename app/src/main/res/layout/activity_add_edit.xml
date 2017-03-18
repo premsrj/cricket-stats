@@ -16,15 +16,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="145dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="runs taken"
             android:inputType="number"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
 
         <EditText
             android:id="@+id/editText6"
@@ -32,14 +32,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="balls faced"
             android:inputType="number"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editText5" />
 
         <EditText
             android:id="@+id/editText7"
@@ -47,14 +47,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="255dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="team score"
             android:inputType="number"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -62,12 +62,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="334dp"
+            android:layout_marginTop="16dp"
             android:text="Out?"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -157,12 +157,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="402dp"
+            android:layout_marginTop="16dp"
             android:text="Bowled"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editText11" />
 
         <CheckBox
             android:id="@+id/checkBox12"
@@ -170,12 +170,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="440dp"
+            android:layout_marginTop="16dp"
             android:text="Catch"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
 
         <CheckBox
             android:id="@+id/checkBox13"
@@ -201,7 +201,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="Catch Behind"
+            android:text="Caught Behind"
             app:layout_constraintBottom_toBottomOf="@+id/checkBox12"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="@+id/guideline2"
@@ -215,16 +215,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="490dp"
+            android:layout_marginTop="32dp"
             android:text="Fielding"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:textColor="@android:color/background_dark"
             app:layout_constraintHorizontal_bias="0.53"
             app:layout_constraintLeft_toLeftOf="@+id/guideline"
             app:layout_constraintRight_toLeftOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
 
         <View
+            android:id="@+id/margin_view"
             android:layout_width="0dp"
             android:layout_height="3dp"
             android:layout_marginLeft="8dp"
@@ -242,7 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="24dp"
             android:text="12-Aug-2017"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -255,13 +256,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="82dp"
+            android:layout_marginTop="16dp"
             android:completionHint="Team"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
             tools:text="Opposing Team" />
 
         <EditText
@@ -270,14 +271,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="585dp"
+            android:layout_marginTop="0dp"
             android:ems="10"
-            android:hint="Fielding Run Outs"
+            android:hint="fielding run outs"
             android:inputType="number"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editText14" />
 
         <EditText
             android:id="@+id/editText14"
@@ -285,13 +286,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="540dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="Fielding Catches"
+            android:hint="fielding catches"
             android:inputType="number"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/margin_view" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
