@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.premsuraj.cricketstats.base.BaseActivity;
+import com.premsuraj.cricketstats.base.MainActivity;
 import com.premsuraj.cricketstats.startup.StartupItem;
 import com.premsuraj.cricketstats.startup.StartupManager;
 import com.premsuraj.cricketstats.startup.StartupManagerCallback;
@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         new StartupManager().start(new StartupManagerCallback() {
             @Override
             public void onFinishedProcessing(ArrayList<StartupItem> passedItems, ArrayList<StartupItem> failedItems) {
-                Intent intent = new Intent(SplashActivity.this, BaseActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

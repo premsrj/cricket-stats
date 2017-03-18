@@ -22,9 +22,9 @@ import com.premsuraj.cricketstats.utils.ObjectSerializer;
 
 import java.io.File;
 
-public class BaseActivity extends AppCompatActivity implements NavigationContainerListener, GoogleLoginManager.LoginListener {
+public class MainActivity extends AppCompatActivity implements NavigationContainerListener, GoogleLoginManager.LoginListener {
 
-    private static final String TAG = "Base";
+    private static final String TAG = "Main";
     public NavigationManager navigationManager;
     GoogleLoginManager loginManager;
 
