@@ -73,6 +73,9 @@ public class NavigationManager
 
     public void userLoggedIn(Context context, GoogleLoginManager.UserDetails userDetails) {
 
+        userImage.setVisibility(View.VISIBLE);
+        userName.setVisibility(View.VISIBLE);
+        signInButton.setVisibility(View.GONE);
         Glide.with(context).load(userDetails.imageUrl)
                 .thumbnail(0.5f)
                 .crossFade()

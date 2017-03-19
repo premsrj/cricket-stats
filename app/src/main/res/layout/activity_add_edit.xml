@@ -12,12 +12,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.premsuraj.cricketstats.AddEditActivity">
+        tools:context="com.premsuraj.cricketstats.addedit.AddEditActivity">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.premsuraj.cricketstats.AddEditActivity">
+            tools:context="com.premsuraj.cricketstats.addedit.AddEditActivity">
 
             <EditText
                 android:id="@+id/runs_taken"
@@ -224,8 +224,7 @@
                 android:entries="@array/outs"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fours"
-                app:selection="@={innings.out}" />
+                app:layout_constraintTop_toBottomOf="@+id/fours" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

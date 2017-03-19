@@ -11,8 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.premsuraj.cricketstats.AddEditActivity;
 import com.premsuraj.cricketstats.R;
+import com.premsuraj.cricketstats.addedit.AddEditActivity;
 import com.premsuraj.cricketstats.login.GoogleLoginManager;
 import com.premsuraj.cricketstats.navigation.NavigationContainerListener;
 import com.premsuraj.cricketstats.navigation.NavigationManager;

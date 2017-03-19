@@ -19,11 +19,14 @@ public class SpinnerBindingUtil {
     }
 
     @BindingAdapter(value = {"selection", "selectionAttrChanged", "adapter"}, requireAll = false)
-    public static void setAdapter(final AdapterView view, String newSelection, final InverseBindingListener bindingListener, final ArrayAdapter adapter) {
+    public static void setAdapter(final AdapterView view, final String newSelection, final InverseBindingListener bindingListener, final ArrayAdapter adapter) {
         view.setAdapter(adapter);
         view.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (newSelection != null && newSelection.equalsIgnoreCase(parent.getSelectedItem().toString())) {
+                    return;
+                }
                 bindingListener.onChange();
             }
 

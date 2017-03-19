@@ -7,24 +7,16 @@ import java.io.Serializable;
  */
 
 public class InningsData implements Serializable {
-    String date;
-    String opposingTeam;
-    int runsTaken;
-    int ballsFaced;
-    int teamScore;
-    int fours;
-    int sixes;
-    String out;
-    int fieldingCatches;
-    int fieldingRunouts;
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public String opposingTeam;
+    public String date;
+    public String runsTaken;
+    public String ballsFaced;
+    public String teamScore;
+    public String fours;
+    public String sixes;
+    public String out;
+    public String fieldingCatches;
+    public String fieldingRunouts;
 
     public String getOpposingTeam() {
         return opposingTeam;
@@ -34,44 +26,52 @@ public class InningsData implements Serializable {
         this.opposingTeam = opposingTeam;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getRunsTaken() {
-        return "" + runsTaken;
+        return runsTaken;
     }
 
     public void setRunsTaken(String runsTaken) {
-        this.runsTaken = Integer.parseInt(runsTaken);
+        this.runsTaken = runsTaken;
     }
 
     public String getBallsFaced() {
-        return "" + ballsFaced;
+        return ballsFaced;
     }
 
     public void setBallsFaced(String ballsFaced) {
-        this.ballsFaced = Integer.parseInt(ballsFaced);
+        this.ballsFaced = ballsFaced;
     }
 
     public String getTeamScore() {
-        return "" + teamScore;
+        return teamScore;
     }
 
     public void setTeamScore(String teamScore) {
-        this.teamScore = Integer.parseInt(teamScore);
+        this.teamScore = teamScore;
     }
 
     public String getFours() {
-        return "" + fours;
+        return fours;
     }
 
     public void setFours(String fours) {
-        this.fours = Integer.parseInt(fours);
+        this.fours = fours;
     }
 
     public String getSixes() {
-        return "" + sixes;
+        return sixes;
     }
 
     public void setSixes(String sixes) {
-        this.sixes = Integer.parseInt(sixes);
+        this.sixes = sixes;
     }
 
     public String getOut() {
@@ -83,18 +83,18 @@ public class InningsData implements Serializable {
     }
 
     public String getFieldingCatches() {
-        return "" + fieldingCatches;
+        return fieldingCatches;
     }
 
     public void setFieldingCatches(String fieldingCatches) {
-        this.fieldingCatches = Integer.parseInt(fieldingCatches);
+        this.fieldingCatches = fieldingCatches;
     }
 
     public String getFieldingRunouts() {
-        return "" + fieldingRunouts;
+        return fieldingRunouts;
     }
 
     public void setFieldingRunouts(String fieldingRunouts) {
-        this.fieldingRunouts = Integer.parseInt(fieldingRunouts);
+        this.fieldingRunouts = fieldingRunouts;
     }
 }
