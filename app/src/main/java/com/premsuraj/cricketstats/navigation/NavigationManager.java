@@ -84,4 +84,10 @@ public class NavigationManager
 
         userName.setText(userDetails.userName);
     }
+
+    public void userLoggedOut() {
+        userImage.setVisibility(View.GONE);
+        userName.setVisibility(View.GONE);
+        signInButton.setVisibility(View.VISIBLE);
+    }
 }
