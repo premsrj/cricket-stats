@@ -7,6 +7,9 @@ import com.premsuraj.cricketstats.InningsData;
 
 import java.util.List;
 
+import static com.premsuraj.cricketstats.statistics.InningsHelper.isInnings;
+import static com.premsuraj.cricketstats.statistics.InningsHelper.isNullOrEmpty;
+
 /**
  * Created by Premsuraj
  */
@@ -71,15 +74,6 @@ public class StatisticsEngine {
             FirebaseCrash.report(ex);
             return 0;
         }
-    }
-
-    private boolean isInnings(InningsData data) {
-        return !(isNullOrEmpty(data.runsTaken) ||
-                isNullOrEmpty(data.ballsFaced));
-    }
-
-    private boolean isNullOrEmpty(String runsTaken) {
-        return runsTaken == null || runsTaken.isEmpty();
     }
 
     public String getHighScore() {

@@ -17,14 +17,26 @@ import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.databinding.ActivityAddEditBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.premsuraj.cricketstats.statistics.InningsHelper.isNullOrEmpty;
+
 public class AddEditActivity extends AppCompatActivity {
+    public static final String KEY_INNINGS_DATA = "innings_data";
     Spinner outSpinner;
     private InningsData innings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        innings = new InningsData();
+        if (getIntent() != null) {
+            innings = (getIntent().getSerializableExtra(KEY_INNINGS_DATA) != null
+                    && getIntent().getSerializableExtra(KEY_INNINGS_DATA) instanceof InningsData) ?
+                    (InningsData) getIntent().getSerializableExtra(KEY_INNINGS_DATA) :
+                    new InningsData();
+        }
+
         ActivityAddEditBinding binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.activity_add_edit, null, false);
         binding.setInnings(innings);
         setContentView(binding.getRoot());
@@ -47,6 +59,16 @@ public class AddEditActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        updateDate();
+    }
+
+    private void updateDate() {
+        if (isNullOrEmpty(innings.date)) {
+            Date today = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+            innings.date = format.format(today);
+        }
     }
 
     @Override
