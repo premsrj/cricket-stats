@@ -1,5 +1,7 @@
 package com.premsuraj.cricketstats.addedit;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,22 +12,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.databinding.ActivityAddEditBinding;
+import com.premsuraj.cricketstats.utils.DatePicker;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 import static com.premsuraj.cricketstats.statistics.InningsHelper.isNullOrEmpty;
 
-public class AddEditActivity extends AppCompatActivity {
+public class AddEditActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     public static final String KEY_INNINGS_DATA = "innings_data";
     Spinner outSpinner;
     private InningsData innings;
+    private View.OnClickListener dateClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            DialogFragment datePicker = new DatePicker(AddEditActivity.this);
+            datePicker.show(getFragmentManager(), "datePicker");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class AddEditActivity extends AppCompatActivity {
         outSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                innings.out = getResources().getStringArray(R.array.outs)[position];
+                innings.setOut(getResources().getStringArray(R.array.outs)[position]);
             }
 
             @Override
@@ -64,10 +74,10 @@ public class AddEditActivity extends AppCompatActivity {
     }
 
     private void updateDate() {
-        if (isNullOrEmpty(innings.date)) {
-            Date today = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
-            innings.date = format.format(today);
+        findViewById(R.id.date).setOnClickListener(dateClicked);
+
+        if (isNullOrEmpty(innings.getDate())) {
+            innings.setDateFromCalendar(Calendar.getInstance());
         }
     }
 
@@ -97,5 +107,14 @@ public class AddEditActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference scores = database.getReference("scores");
         scores.push().setValue(innings);
+    }
+
+    @Override
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        innings.setDateFromCalendar(calendar);
+        TextView date = ((TextView) findViewById(R.id.date));
+        date.setText(innings.getDate());
     }
 }

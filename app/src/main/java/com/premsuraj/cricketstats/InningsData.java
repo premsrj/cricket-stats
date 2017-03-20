@@ -1,100 +1,109 @@
 package com.premsuraj.cricketstats;
 
+import android.databinding.ObservableField;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Premsuraj
  */
 
 public class InningsData implements Serializable {
-    public String opposingTeam;
-    public String date;
-    public String runsTaken;
-    public String ballsFaced;
-    public String teamScore;
-    public String fours;
-    public String sixes;
-    public String out;
-    public String fieldingCatches;
-    public String fieldingRunouts;
+    private ObservableField<String> opposingTeam = new ObservableField<>();
+    private ObservableField<String> date = new ObservableField<>();
+    private ObservableField<String> runsTaken = new ObservableField<>();
+    private ObservableField<String> ballsFaced = new ObservableField<>();
+    private ObservableField<String> teamScore = new ObservableField<>();
+    private ObservableField<String> fours = new ObservableField<>();
+    private ObservableField<String> sixes = new ObservableField<>();
+    private ObservableField<String> out = new ObservableField<>();
+    private ObservableField<String> fieldingCatches = new ObservableField<>();
+    private ObservableField<String> fieldingRunouts = new ObservableField<>();
 
     public String getOpposingTeam() {
-        return opposingTeam;
+        return opposingTeam.get();
     }
 
     public void setOpposingTeam(String opposingTeam) {
-        this.opposingTeam = opposingTeam;
+        this.opposingTeam.set(opposingTeam);
     }
 
     public String getDate() {
-        return date;
+        return date.get();
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date.set(date);
     }
 
     public String getRunsTaken() {
-        return runsTaken;
+        return runsTaken.get();
     }
 
     public void setRunsTaken(String runsTaken) {
-        this.runsTaken = runsTaken;
+        this.runsTaken.set(runsTaken);
     }
 
     public String getBallsFaced() {
-        return ballsFaced;
+        return ballsFaced.get();
     }
 
     public void setBallsFaced(String ballsFaced) {
-        this.ballsFaced = ballsFaced;
+        this.ballsFaced.set(ballsFaced);
     }
 
     public String getTeamScore() {
-        return teamScore;
+        return teamScore.get();
     }
 
     public void setTeamScore(String teamScore) {
-        this.teamScore = teamScore;
+        this.teamScore.set(teamScore);
     }
 
     public String getFours() {
-        return fours;
+        return fours.get();
     }
 
     public void setFours(String fours) {
-        this.fours = fours;
+        this.fours.set(fours);
     }
 
     public String getSixes() {
-        return sixes;
+        return sixes.get();
     }
 
     public void setSixes(String sixes) {
-        this.sixes = sixes;
+        this.sixes.set(sixes);
     }
 
     public String getOut() {
-        return out;
+        return out.get();
     }
 
     public void setOut(String out) {
-        this.out = out;
+        this.out.set(out);
     }
 
     public String getFieldingCatches() {
-        return fieldingCatches;
+        return fieldingCatches.get();
     }
 
     public void setFieldingCatches(String fieldingCatches) {
-        this.fieldingCatches = fieldingCatches;
+        this.fieldingCatches.set(fieldingCatches);
     }
 
     public String getFieldingRunouts() {
-        return fieldingRunouts;
+        return fieldingRunouts.get();
     }
 
     public void setFieldingRunouts(String fieldingRunouts) {
-        this.fieldingRunouts = fieldingRunouts;
+        this.fieldingRunouts.set(fieldingRunouts);
+    }
+
+    public void setDateFromCalendar(Calendar date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        this.setDate(format.format(date.getTime()));
     }
 }

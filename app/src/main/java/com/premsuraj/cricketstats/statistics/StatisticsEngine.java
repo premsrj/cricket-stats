@@ -31,10 +31,10 @@ public class StatisticsEngine {
         highScoreAndOut = Pair.create(0, false);
         for (InningsData data : inningsDatas) {
             if (isInnings(data)) {
-                totalScore += getInt(data.runsTaken);
-                ballsFaced += getInt(data.ballsFaced);
-                totalFours += getInt(data.fours);
-                totalSixes += getInt(data.sixes);
+                totalScore += getInt(data.getRunsTaken());
+                ballsFaced += getInt(data.getBallsFaced());
+                totalFours += getInt(data.getFours());
+                totalSixes += getInt(data.getSixes());
 
                 if (isOut(data)) {
                     numOuts++;
@@ -42,16 +42,16 @@ public class StatisticsEngine {
                     notOuts++;
                 }
 
-                if (!isNullOrEmpty(data.teamScore)) {
-                    teamScore += getInt(data.teamScore);
-                    runsWithTeamScore += getInt(data.runsTaken);
+                if (!isNullOrEmpty(data.getTeamScore())) {
+                    teamScore += getInt(data.getTeamScore());
+                    runsWithTeamScore += getInt(data.getRunsTaken());
                 }
 
-                if (getInt(data.runsTaken) > highScoreAndOut.first) {
-                    highScoreAndOut = Pair.create(getInt(data.runsTaken), isOut(data));
-                } else if (getInt(data.runsTaken) == highScoreAndOut.first) {
+                if (getInt(data.getRunsTaken()) > highScoreAndOut.first) {
+                    highScoreAndOut = Pair.create(getInt(data.getRunsTaken()), isOut(data));
+                } else if (getInt(data.getRunsTaken()) == highScoreAndOut.first) {
                     if (!isOut(data) && highScoreAndOut.second) {
-                        highScoreAndOut = Pair.create(getInt(data.runsTaken), isOut(data));
+                        highScoreAndOut = Pair.create(getInt(data.getRunsTaken()), isOut(data));
                     }
                 }
             }
@@ -59,9 +59,9 @@ public class StatisticsEngine {
     }
 
     private boolean isOut(InningsData data) {
-        if (isNullOrEmpty(data.out))
+        if (isNullOrEmpty(data.getOut()))
             return false;
-        if (data.out.equalsIgnoreCase("Not Out"))
+        if (data.getOut().equalsIgnoreCase("Not Out"))
             return false;
         else
             return true;

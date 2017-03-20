@@ -9,8 +9,8 @@ import com.premsuraj.cricketstats.InningsData;
 public abstract class InningsHelper {
 
     public static boolean isInnings(InningsData data) {
-        return !(isNullOrEmpty(data.runsTaken) ||
-                isNullOrEmpty(data.ballsFaced));
+        return !(isNullOrEmpty(data.getRunsTaken()) ||
+                isNullOrEmpty(data.getBallsFaced()));
     }
 
     public static boolean isNullOrEmpty(String runsTaken) {
