@@ -59,6 +59,7 @@ public class GoogleLoginManager {
     public void login() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("577020833184-svou101l6ud398pn481i22gpbj8g25fa.apps.googleusercontent.com")
+                .requestEmail()
                 .build();
         if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(activity)
