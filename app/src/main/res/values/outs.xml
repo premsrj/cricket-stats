@@ -8,5 +8,7 @@
         <item>Caught &amp; Bowled</item>
         <item>Caught Behind</item>
         <item>Catch Other</item>
+        <item>Stumped</item>
+        <item>Hit Wicket</item>
     </string-array>
 </resources>

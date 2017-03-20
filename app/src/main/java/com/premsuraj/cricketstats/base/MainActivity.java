@@ -37,12 +37,16 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     public FloatingActionButton fab;
     GoogleLoginManager loginManager;
     ArrayList<InningsData> data;
-    TextView topScore;
-    TextView average;
-    TextView strikeRate;
-    TextView fours;
-    TextView sixes;
-    TextView teamPercent;
+    private TextView topScore;
+    private TextView average;
+    private TextView strikeRate;
+    private TextView fours;
+    private TextView sixes;
+    private TextView teamPercent;
+    private TextView fifties;
+    private TextView hundreds;
+    private TextView catchesTaken;
+    private TextView runoutsMade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
         setContentView(R.layout.activity_home);
 
         topScore = (TextView) findViewById(R.id.top_score);
+        fifties = (TextView) findViewById(R.id.fifties);
+        hundreds = (TextView) findViewById(R.id.hundreds);
         average = (TextView) findViewById(R.id.average);
         strikeRate = (TextView) findViewById(R.id.strike_rate);
         fours = (TextView) findViewById(R.id.fours);
         sixes = (TextView) findViewById(R.id.sixes);
         teamPercent = (TextView) findViewById(R.id.team_score_percent);
+        catchesTaken = (TextView) findViewById(R.id.catches_taken);
+        runoutsMade = (TextView) findViewById(R.id.runouts_made);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -140,11 +148,15 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
                 statisticsEngine = new StatisticsEngine();
                 statisticsEngine.process(data);
                 topScore.setText(statisticsEngine.getHighScore());
+                fifties.setText(statisticsEngine.getFifites());
+                hundreds.setText(statisticsEngine.getHundreds());
                 average.setText(statisticsEngine.getAverage());
                 strikeRate.setText(statisticsEngine.getStrikeRate());
                 fours.setText(statisticsEngine.getFours());
                 sixes.setText(statisticsEngine.getSixes());
                 teamPercent.setText(statisticsEngine.getTeamScorePercent());
+                catchesTaken.setText(statisticsEngine.getCatchesTaken());
+                runoutsMade.setText(statisticsEngine.getRunoutsMade());
                 fab.setVisibility(View.VISIBLE);
             }
 
