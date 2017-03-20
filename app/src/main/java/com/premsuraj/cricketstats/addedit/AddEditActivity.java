@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.premsuraj.cricketstats.Constants;
 import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.databinding.ActivityAddEditBinding;
@@ -139,7 +140,7 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
 
     private void saveValues() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference scores = database.getReference("scores");
+        final DatabaseReference scores = database.getReference(Constants.DATABASE_REF);
         scores.push().setValue(innings);
         new Handler().postDelayed(new Runnable() {
             @Override

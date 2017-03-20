@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.premsuraj.cricketstats.Constants;
 import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.addedit.AddEditActivity;
@@ -53,6 +54,51 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        initFab();
+        Toolbar toolbar = initViews();
+        initDrawer(toolbar);
+        initLogin();
+        initNavigation();
+        initFirebase();
+    }
+
+    private void initFirebase() {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_REF);
+        scoresRef.keepSynced(true);
+    }
+
+    private void initNavigation() {
+        navigationManager = new NavigationManager(this);
+        navigationManager.initNavigationView((NavigationView) findViewById(R.id.nav_view));
+    }
+
+    private void initLogin() {
+        loginManager = new GoogleLoginManager(this);
+    }
+
+    private void initDrawer(Toolbar toolbar) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private void initFab() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addEditIntent = new Intent(MainActivity.this, AddEditActivity.class);
+                addEditIntent.putStringArrayListExtra(AddEditActivity.KEY_OPPOSING_TEAMS_AUTOCOMPLETE,
+                        new ArrayList<String>(statisticsEngine.getOpposingTeams()));
+                startActivity(addEditIntent);
+            }
+        });
+    }
+
+    private Toolbar initViews() {
         topScore = (TextView) findViewById(R.id.top_score);
         fifties = (TextView) findViewById(R.id.fifties);
         hundreds = (TextView) findViewById(R.id.hundreds);
@@ -66,27 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addEditIntent = new Intent(MainActivity.this, AddEditActivity.class);
-                addEditIntent.putStringArrayListExtra(AddEditActivity.KEY_OPPOSING_TEAMS_AUTOCOMPLETE,
-                        new ArrayList<String>(statisticsEngine.getOpposingTeams()));
-                startActivity(addEditIntent);
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        loginManager = new GoogleLoginManager(this);
-        navigationManager = new NavigationManager(this);
-        navigationManager.initNavigationView((NavigationView) findViewById(R.id.nav_view));
+        return toolbar;
     }
 
     @Override
@@ -134,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     private void fetchData() {
         fab.setVisibility(View.GONE);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference scores = database.getReference("scores");
+        final DatabaseReference scores = database.getReference(Constants.DATABASE_REF);
         scores.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
