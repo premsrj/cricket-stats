@@ -5,7 +5,9 @@ import android.util.Pair;
 import com.google.firebase.crash.FirebaseCrash;
 import com.premsuraj.cricketstats.InningsData;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.premsuraj.cricketstats.statistics.InningsHelper.isInnings;
 import static com.premsuraj.cricketstats.statistics.InningsHelper.isNullOrEmpty;
@@ -23,11 +25,13 @@ public class StatisticsEngine {
     int totalFours;
     int totalSixes;
     int teamScore, runsWithTeamScore;
+    Set<String> opposingTeams;
 
 
     public void process(List<InningsData> inningsDatas) {
         totalScore = totalFours = totalSixes = numOuts = notOuts = ballsFaced = 0;
         teamScore = runsWithTeamScore = 0;
+        opposingTeams = new HashSet<String>();
         highScoreAndOut = Pair.create(0, false);
         for (InningsData data : inningsDatas) {
             if (isInnings(data)) {
@@ -53,6 +57,10 @@ public class StatisticsEngine {
                     if (!isOut(data) && highScoreAndOut.second) {
                         highScoreAndOut = Pair.create(getInt(data.getRunsTaken()), isOut(data));
                     }
+                }
+
+                if (!isNullOrEmpty(data.getOpposingTeam())) {
+                    opposingTeams.add(data.getOpposingTeam());
                 }
             }
         }
@@ -101,5 +109,9 @@ public class StatisticsEngine {
 
     public String getSixes() {
         return "" + totalSixes;
+    }
+
+    public Set<String> getOpposingTeams() {
+        return opposingTeams;
     }
 }

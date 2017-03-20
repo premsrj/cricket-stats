@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     private static final String TAG = "Main";
     public NavigationManager navigationManager;
     public StatisticsEngine statisticsEngine;
+    public FloatingActionButton fab;
     GoogleLoginManager loginManager;
     ArrayList<InningsData> data;
     TextView topScore;
@@ -58,11 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addEditIntent = new Intent(MainActivity.this, AddEditActivity.class);
+                addEditIntent.putStringArrayListExtra(AddEditActivity.KEY_OPPOSING_TEAMS_AUTOCOMPLETE,
+                        new ArrayList<String>(statisticsEngine.getOpposingTeams()));
                 startActivity(addEditIntent);
             }
         });
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     }
 
     private void fetchData() {
+        fab.setVisibility(View.GONE);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference scores = database.getReference("scores");
         scores.addValueEventListener(new ValueEventListener() {
@@ -141,11 +145,12 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
                 fours.setText(statisticsEngine.getFours());
                 sixes.setText(statisticsEngine.getSixes());
                 teamPercent.setText(statisticsEngine.getTeamScorePercent());
+                fab.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                fab.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -165,5 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
         navigationManager.userLoggedIn(this, userDetails);
         String fileName = new File(this.getFilesDir(), "userdetails.dat").getAbsolutePath();
         new ObjectSerializer().putObject(fileName, userDetails);
+        fetchData();
     }
 }

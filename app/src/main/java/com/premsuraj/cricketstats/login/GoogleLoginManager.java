@@ -32,6 +32,7 @@ import static com.google.android.gms.internal.zzt.TAG;
 
 public class GoogleLoginManager {
     private static final int RC_SIGN_IN = 4531;
+    public GoogleApiClient googleApiClient;
     private UserDetails userDetails;
     private FragmentActivity activity;
     private FirebaseAuth mAuth;
@@ -49,6 +50,7 @@ public class GoogleLoginManager {
             // ...
         }
     };
+
     public GoogleLoginManager(FragmentActivity activity) {
         this.activity = activity;
         mAuth = FirebaseAuth.getInstance();
@@ -58,15 +60,17 @@ public class GoogleLoginManager {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("577020833184-svou101l6ud398pn481i22gpbj8g25fa.apps.googleusercontent.com")
                 .build();
-        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(activity)
-                .enableAutoManage(activity, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Snackbar.make(activity.getWindow().getDecorView(), R.string.google_login_failed, Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        if (googleApiClient == null) {
+            googleApiClient = new GoogleApiClient.Builder(activity)
+                    .enableAutoManage(activity, new GoogleApiClient.OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                            Snackbar.make(activity.getWindow().getDecorView(), R.string.google_login_failed, Snackbar.LENGTH_LONG).show();
+                        }
+                    })
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         activity.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -131,7 +135,7 @@ public class GoogleLoginManager {
         void loginSucceeded(UserDetails userDetails);
     }
 
-    public class UserDetails implements Serializable {
+    public static class UserDetails implements Serializable {
         public String userName;
         public String imageUrl;
         public String idToken;
