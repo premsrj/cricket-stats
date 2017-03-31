@@ -18,10 +18,10 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.premsuraj.cricketstats.Constants;
 import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.databinding.ActivityAddEditBinding;
+import com.premsuraj.cricketstats.login.GoogleLoginManager;
 import com.premsuraj.cricketstats.utils.DatePicker;
 
 import java.util.ArrayList;
@@ -139,8 +139,12 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
     }
 
     private void saveValues() {
+        String key = new GoogleLoginManager(this).getEmailBasedKey();
+        if (key == null) {
+            return;
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference scores = database.getReference(Constants.DATABASE_REF);
+        final DatabaseReference scores = database.getReference(key);
         scores.push().setValue(innings);
         new Handler().postDelayed(new Runnable() {
             @Override

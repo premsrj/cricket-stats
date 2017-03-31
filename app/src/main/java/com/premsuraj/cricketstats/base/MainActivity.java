@@ -17,7 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.premsuraj.cricketstats.Constants;
 import com.premsuraj.cricketstats.InningsData;
 import com.premsuraj.cricketstats.R;
 import com.premsuraj.cricketstats.addedit.AddEditActivity;
@@ -63,9 +62,17 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     }
 
     private void initFirebase() {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_REF);
-        scoresRef.keepSynced(true);
+        try {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            String key = loginManager.getEmailBasedKey();
+            if (key == null) {
+                return;
+            }
+            DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference(key);
+            scoresRef.keepSynced(true);
+        } catch (Exception ignored) {
+
+        }
     }
 
     private void initNavigation() {
@@ -159,8 +166,12 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
 
     private void fetchData() {
         fab.setVisibility(View.GONE);
+        String key = loginManager.getEmailBasedKey();
+        if (key == null) {
+            return;
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference scores = database.getReference(Constants.DATABASE_REF);
+        final DatabaseReference scores = database.getReference(key);
         scores.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -194,8 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationContain
     }
 
     private void checkLogin() {
-        String fileName = new File(this.getFilesDir(), "userdetails.dat").getAbsolutePath();
-        GoogleLoginManager.UserDetails details = (GoogleLoginManager.UserDetails) new ObjectSerializer().get(fileName);
+        GoogleLoginManager.UserDetails details = loginManager.getUserDetails();
         if (details != null) {
             navigationManager.userLoggedIn(this, details);
         } else {

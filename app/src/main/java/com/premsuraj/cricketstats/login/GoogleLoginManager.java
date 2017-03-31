@@ -21,7 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.crash.FirebaseCrash;
 import com.premsuraj.cricketstats.R;
+import com.premsuraj.cricketstats.utils.ObjectSerializer;
 
+import java.io.File;
 import java.io.Serializable;
 
 import static com.google.android.gms.internal.zzt.TAG;
@@ -92,11 +94,11 @@ public class GoogleLoginManager {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
         userDetails = new UserDetails();
         userDetails.userName = acct.getDisplayName();
         userDetails.imageUrl = acct.getPhotoUrl().toString();
         userDetails.idToken = acct.getIdToken();
+        userDetails.emailId = acct.getEmail();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
@@ -129,7 +131,21 @@ public class GoogleLoginManager {
     }
 
     public UserDetails getUserDetails() {
+        if (userDetails == null) {
+            String fileName = new File(activity.getFilesDir(), "userdetails.dat").getAbsolutePath();
+            userDetails = (GoogleLoginManager.UserDetails) new ObjectSerializer().get(fileName);
+        }
         return userDetails;
+    }
+
+    public String getEmailBasedKey() {
+        UserDetails details = getUserDetails();
+        if (details == null) {
+            return null;
+        }
+
+        String key = userDetails.emailId.replace(".", "_");
+        return key;
     }
 
     public interface LoginListener {
@@ -140,5 +156,6 @@ public class GoogleLoginManager {
         public String userName;
         public String imageUrl;
         public String idToken;
+        public String emailId;
     }
 }
